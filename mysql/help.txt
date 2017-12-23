@@ -1,0 +1,42 @@
+create db
+
+create database bmp180;
+use bmp180;
+
+CREATE TABLE IF NOT EXISTS `sensor_names` (
+`sensor_id` varchar(25) NOT NULL,
+`name` varchar(255) NOT NULL,
+`volgorde` int(3) NOT NULL,
+PRIMARY KEY (`sensor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `mesure_log` (
+`measurement_id` int(11) NOT NULL AUTO_INCREMENT,
+`sensor_id` varchar(25) NOT NULL,
+`date` date NOT NULL,
+`time` time NOT NULL,
+`timestamp` int(11) DEFAULT NULL,
+`value_p` varchar(50) DEFAULT NULL,
+`value_t` varchar(50) DEFAULT NULL,
+PRIMARY KEY (`measurement_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+
+insert into sensor_names(sensor_id, name, volgorde) values('bmp180', 'Thuis', '1');
+
+grant usage on bmp180.* to 'bmp180_user1'@'localhost' identified by 'pwd_user1';
+grant all privileges on bmp180.* to 'bmp180_user1'@'localhost';
+flush privileges;
+
+
+
+even de tabellen rechttrekken:
+
+update mesure_log set sensor_id='bmp180' where measurement_id=5;
+
+MariaDB [bmp180]> update mesure_log set value_p=1019.68 where measurement_id in (8,17,20,21,23,26,29,32,33,34,35,38,40,46,49,51,54);
+Query OK, 16 rows affected (0.03 sec)
+Rows matched: 17  Changed: 16  Warnings: 0
+
+MariaDB [bmp180]> 
+

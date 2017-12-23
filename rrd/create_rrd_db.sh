@@ -1,0 +1,7 @@
+rrdtool create pressure.rrd --step 900 \
+DS:temp:GAUGE:1200:-40:80 \
+DS:psea:GAUGE:1200:950:1050 \
+RRA:AVERAGE:0.5:1:960 \
+RRA:MIN:0.5:96:3600 \
+RRA:MAX:0.5:96:3600 \
+RRA:AVERAGE:0.5:96:3600
