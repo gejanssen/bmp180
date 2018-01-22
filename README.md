@@ -1,5 +1,7 @@
 # bmp180
 
+C version in the C dir.
+
 ### Enable IO
 Enable IO (I2c module)
 
